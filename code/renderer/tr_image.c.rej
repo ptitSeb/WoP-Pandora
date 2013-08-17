@@ -1,0 +1,111 @@
+*************** void R_ImageList_f( void ) {
+*** 163,168 ****
+  
+  		switch(image->internalFormat)
+  		{
+  			case GL_COMPRESSED_SRGB_ALPHA_S3TC_DXT1_EXT:
+  				format = "sDXT1";
+  				// 64 bits per 16 pixels, so 4 bits per pixel
+--- 163,169 ----
+  
+  		switch(image->internalFormat)
+  		{
++ #ifndef HAVE_GLES
+  			case GL_COMPRESSED_SRGB_ALPHA_S3TC_DXT1_EXT:
+  				format = "sDXT1";
+  				// 64 bits per 16 pixels, so 4 bits per pixel
+*************** void R_ImageList_f( void ) {
+*** 198,230 ****
+  				// same as DXT1?
+  				estSize /= 2;
+  				break;
+  			case GL_RGBA4:
+  			case GL_RGBA8:
+  			case GL_RGBA:
+  				format = "RGBA ";
+  				// 4 bytes per pixel
+  				estSize *= 4;
+  				break;
+  			case GL_LUMINANCE8:
+  			case GL_LUMINANCE16:
+  			case GL_LUMINANCE:
+  				format = "L    ";
+  				// 1 byte per pixel?
+  				break;
+  			case GL_RGB5:
+  			case GL_RGB8:
+  			case GL_RGB:
+  				format = "RGB  ";
+  				// 3 bytes per pixel?
+  				estSize *= 3;
+  				break;
+  			case GL_LUMINANCE8_ALPHA8:
+  			case GL_LUMINANCE16_ALPHA16:
+  			case GL_LUMINANCE_ALPHA:
+  				format = "LA   ";
+  				// 2 bytes per pixel?
+  				estSize *= 2;
+  				break;
+  			case GL_SRGB_EXT:
+  			case GL_SRGB8_EXT:
+  				format = "sRGB ";
+--- 199,241 ----
+  				// same as DXT1?
+  				estSize /= 2;
+  				break;
++ #endif
+  			case GL_RGBA4:
++ #ifndef HAVE_GLES
+  			case GL_RGBA8:
++ #endif
+  			case GL_RGBA:
+  				format = "RGBA ";
+  				// 4 bytes per pixel
+  				estSize *= 4;
+  				break;
++ #ifndef HAVE_GLES
+  			case GL_LUMINANCE8:
+  			case GL_LUMINANCE16:
++ #endif
+  			case GL_LUMINANCE:
+  				format = "L    ";
+  				// 1 byte per pixel?
+  				break;
+  			case GL_RGB5:
++ #ifndef HAVE_GLES
+  			case GL_RGB8:
++ #endif
+  			case GL_RGB:
+  				format = "RGB  ";
+  				// 3 bytes per pixel?
+  				estSize *= 3;
+  				break;
++ #ifndef HAVE_GLES
+  			case GL_LUMINANCE8_ALPHA8:
+  			case GL_LUMINANCE16_ALPHA16:
++ #endif
+  			case GL_LUMINANCE_ALPHA:
+  				format = "LA   ";
+  				// 2 bytes per pixel?
+  				estSize *= 2;
+  				break;
++ #ifndef HAVE_GLES
+  			case GL_SRGB_EXT:
+  			case GL_SRGB8_EXT:
+  				format = "sRGB ";
+*************** void R_ImageList_f( void ) {
+*** 248,253 ****
+  				// 2 byte per pixel?
+  				estSize *= 2;
+  				break;
+  		}
+  
+  		// mipmap adds about 50%
+--- 259,265 ----
+  				// 2 byte per pixel?
+  				estSize *= 2;
+  				break;
++ #endif
+  		}
+  
+  		// mipmap adds about 50%

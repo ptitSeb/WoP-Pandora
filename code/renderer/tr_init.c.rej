@@ -1,0 +1,46 @@
+*************** vidmode_t r_vidModes[] =
+*** 280,286 ****
+  	{ "Mode  8: 1280x1024",		1280,	1024,	1 },
+  	{ "Mode  9: 1600x1200",		1600,	1200,	1 },
+  	{ "Mode 10: 2048x1536",		2048,	1536,	1 },
+- 	{ "Mode 11: 856x480 (wide)",856,	480,	1 }
+  };
+  static int	s_numVidModes = ARRAY_LEN( r_vidModes );
+  
+--- 280,287 ----
+  	{ "Mode  8: 1280x1024",		1280,	1024,	1 },
+  	{ "Mode  9: 1600x1200",		1600,	1200,	1 },
+  	{ "Mode 10: 2048x1536",		2048,	1536,	1 },
++ 	{ "Mode 11: 800x480 (pandora)", 800, 480,   1 },
++ 	{ "Mode 12: 856x480 (wide)",856,	480,	1 }
+  };
+  static int	s_numVidModes = ARRAY_LEN( r_vidModes );
+  
+*************** void GL_SetDefaultState( void )
+*** 890,901 ****
+  	qglColorMask( GL_TRUE, GL_TRUE, GL_TRUE, GL_TRUE );
+  	qglClearColor( 0.0f, 0.0f, 0.0f, 1.0f );
+  	qglClearDepth( 1.0 );
+- 
+  	qglDrawBuffer( GL_FRONT );
+  	qglClear( GL_COLOR_BUFFER_BIT|GL_DEPTH_BUFFER_BIT|GL_ACCUM_BUFFER_BIT|GL_STENCIL_BUFFER_BIT );
+  
+  	qglDrawBuffer( GL_BACK );
+  	qglClear( GL_COLOR_BUFFER_BIT|GL_DEPTH_BUFFER_BIT|GL_ACCUM_BUFFER_BIT|GL_STENCIL_BUFFER_BIT );
+  }
+  
+  /*
+--- 912,924 ----
+  	qglColorMask( GL_TRUE, GL_TRUE, GL_TRUE, GL_TRUE );
+  	qglClearColor( 0.0f, 0.0f, 0.0f, 1.0f );
+  	qglClearDepth( 1.0 );
++ #ifndef HAVE_GLES
+  	qglDrawBuffer( GL_FRONT );
+  	qglClear( GL_COLOR_BUFFER_BIT|GL_DEPTH_BUFFER_BIT|GL_ACCUM_BUFFER_BIT|GL_STENCIL_BUFFER_BIT );
+  
+  	qglDrawBuffer( GL_BACK );
+  	qglClear( GL_COLOR_BUFFER_BIT|GL_DEPTH_BUFFER_BIT|GL_ACCUM_BUFFER_BIT|GL_STENCIL_BUFFER_BIT );
++ #endif
+  }
+  
+  /*

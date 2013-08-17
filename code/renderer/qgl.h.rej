@@ -1,0 +1,30 @@
+*************** extern void     (APIENTRY * qglDrawRangeElementsEXT) (GLenum mode, GLuint start,
+*** 383,389 ****
+  // GL_EXT_multi_draw_arrays
+  extern void     (APIENTRY * qglMultiDrawArraysEXT) (GLenum, GLint *, GLsizei *, GLsizei);
+  extern void     (APIENTRY * qglMultiDrawElementsEXT) (GLenum, const GLsizei *, GLenum, const GLvoid **, GLsizei);
+- 
+  // GL_ARB_shading_language_100
+  #ifndef GL_ARB_shading_language_100
+  #define GL_ARB_shading_language_100
+--- 436,442 ----
+  // GL_EXT_multi_draw_arrays
+  extern void     (APIENTRY * qglMultiDrawArraysEXT) (GLenum, GLint *, GLsizei *, GLsizei);
+  extern void     (APIENTRY * qglMultiDrawElementsEXT) (GLenum, const GLsizei *, GLenum, const GLvoid **, GLsizei);
++ #ifndef HAVE_GLES
+  // GL_ARB_shading_language_100
+  #ifndef GL_ARB_shading_language_100
+  #define GL_ARB_shading_language_100
+*************** extern          HGLRC(APIENTRY * qwglCreateContextAttribsARB) (HDC hdC, HGLRC hS
+*** 752,756 ****
+  
+  extern GLXContext	(APIENTRY * qglXCreateContextAttribsARB) (Display *dpy, GLXFBConfig config, GLXContext share_context, Bool direct, const int *attrib_list);
+  #endif
+- 
+  #endif
+--- 805,809 ----
+  
+  extern GLXContext	(APIENTRY * qglXCreateContextAttribsARB) (Display *dpy, GLXFBConfig config, GLXContext share_context, Bool direct, const int *attrib_list);
+  #endif
++ #endif //HAVE_GLES
+  #endif

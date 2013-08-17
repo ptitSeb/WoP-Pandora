@@ -1,0 +1,41 @@
+*************** static int GLimp_SetMode(int mode, qboolean fullscreen, qboolean noborder)
+*** 252,257 ****
+  
+  	ri.Printf (PRINT_ALL, "...setting mode %d:", mode );
+  
+  	if (mode == -2)
+  	{
+  		// use desktop video resolution
+--- 268,278 ----
+  
+  	ri.Printf (PRINT_ALL, "...setting mode %d:", mode );
+  
++ 	#ifdef PANDORA
++ 	glConfig.vidWidth=800;
++ 	glConfig.vidHeight=480;
++ 	glConfig.windowAspect=800.0/480.0;
++ 	#else
+  	if (mode == -2)
+  	{
+  		// use desktop video resolution
+*************** static void GLimp_InitExtensions( void )
+*** 673,679 ****
+  	}
+  }
+  
+  #define R_MODE_FALLBACK 3 // 640 * 480
+  
+  /*
+  ===============
+--- 738,748 ----
+  	}
+  }
+  
++ #ifdef PANDORA
++ #define R_MODE_FALLBACK 11 // 800 * 480
++ #else
+  #define R_MODE_FALLBACK 3 // 640 * 480
++ #endif
+  
+  /*
+  ===============
