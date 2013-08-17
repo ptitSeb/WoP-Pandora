@@ -16,4 +16,4 @@ This fork is aimed at OpenPandra, so get:
 For the Pandora version, I used some Hardwired modif in the Makefile (COMPILE_PLATFORM=pandora and COMPILE_ARCH=arm)
 
 For more info on the OpenPandora go here: http://boards.openpandora.org/
-Specific thread for Jedi Academy on the OpenPandora here: http://boards.openpandora.org/index.php/topic/14047-world-of-padman/
+Specific thread for Word of Padman on the OpenPandora here: http://boards.openpandora.org/index.php/topic/14047-world-of-padman/
