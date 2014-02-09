@@ -434,6 +434,8 @@ ifeq ($(PLATFORM),pandora)
   SHLIBEXT=so
   SHLIBCFLAGS=-fPIC -fvisibility=hidden
   SHLIBLDFLAGS=-shared $(LDFLAGS)
+  
+  USE_INTERNAL_ZLIB=0
 
   THREAD_LIBS=-lpthread
   LIBS=-ldl -lm
