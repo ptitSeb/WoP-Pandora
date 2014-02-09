@@ -566,6 +566,9 @@ void Sys_SigHandler( int signal )
 main
 =================
 */
+#ifdef PANDORA
+int noshouldermb;
+#endif
 int main( int argc, char **argv )
 {
 	int   i;
@@ -611,6 +614,12 @@ int main( int argc, char **argv )
 	for( i = 1; i < argc; i++ )
 	{
 		const qboolean containsSpaces = strchr(argv[i], ' ') != NULL;
+		#ifdef PANDORA
+		if( !strcmp( argv[i], "--noshouldermb" )) {
+			noshouldermb=1;
+		} else {
+			noshouldermb=0;
+		#endif
 		if (containsSpaces)
 			Q_strcat( commandLine, sizeof( commandLine ), "\"" );
 
@@ -620,6 +629,9 @@ int main( int argc, char **argv )
 			Q_strcat( commandLine, sizeof( commandLine ), "\"" );
 
 		Q_strcat( commandLine, sizeof( commandLine ), " " );
+		#ifdef PANDORA
+		}
+		#endif
 	}
 
 	Com_Init( commandLine );

@@ -212,6 +212,9 @@ static qboolean IN_IsConsoleKey( keyNum_t key, const unsigned char character )
 IN_TranslateSDLToQ3Key
 ===============
 */
+#ifdef PANDORA
+extern int noshouldermb;
+#endif
 static const char *IN_TranslateSDLToQ3Key( SDL_keysym *keysym,
 	keyNum_t *key, qboolean down )
 {
@@ -272,7 +275,7 @@ static const char *IN_TranslateSDLToQ3Key( SDL_keysym *keysym,
 
 #ifdef PANDORA
 			case SDLK_LSHIFT:  		*key = K_SHIFT;  		break;
-			case SDLK_RSHIFT:  		*key = K_MOUSE2;  		break;
+			case SDLK_RSHIFT:  		*key = (noshouldermb)?K_SHIFT:K_MOUSE2;  		break;
 #else
 			case SDLK_LSHIFT:
 			case SDLK_RSHIFT:       *key = K_SHIFT;         break;
@@ -280,7 +283,7 @@ static const char *IN_TranslateSDLToQ3Key( SDL_keysym *keysym,
 
 #ifdef PANDORA
 			case SDLK_LCTRL:  		*key = K_CTRL;  		break;
-			case SDLK_RCTRL:  		*key = K_MOUSE1;  		break;
+			case SDLK_RCTRL:  		*key = (noshouldermb)?K_CTRL:K_MOUSE1;  		break;
 #else
 			case SDLK_LCTRL:
 			case SDLK_RCTRL:        *key = K_CTRL;          break;
